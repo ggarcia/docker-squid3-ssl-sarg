@@ -1,0 +1,14 @@
+
+squid-vols:
+   image: tianon/true
+   volumes:
+     - ./www/:/var/www/html
+     - ./log/:/var/log/squid3 
+
+squid-sarg:
+  build: .
+  volumes_from:
+    - squid-vols
+  ports:
+    - "3128:3128"
+    - "80:80"
