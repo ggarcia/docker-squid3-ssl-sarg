@@ -1,14 +1,24 @@
+version: '2'
 
-squid-vols:
-   image: tianon/true
-   volumes:
-     - ./www/:/var/www/html
-     - ./log/:/var/log/squid3 
+services:
 
-squid-sarg:
-  build: .
-  volumes_from:
-    - squid-vols
-  ports:
-    - "3128:3128"
-    - "80:80"
+  squid:
+    container_name: squid
+    build: .
+    volumes:
+       - www-vol:/var/www/html
+
+    ports:
+      - "3128:3128"
+      - "3129:3129"
+      - "3130:3139"
+      - "80:80"
+
+volumes:
+  www-vol:
+
+# VOLUMES
+# cac-vol:/var/spool/squid3 
+# cer-vol:/etc/squid3/ssl_cert 
+# log-vo:l/var/log/squid3 
+# www-vol:/var/www/html
